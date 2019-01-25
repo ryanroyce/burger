@@ -1,32 +1,34 @@
 // imports the mysql connection from connection.js
 const connection = require("../config/connection.js");
 
+// before we write the orm we need to write a function that will go through a loop and push a question mark to the end of an array and converts into a string
 function printQuestionMarks(num) {
-    var arr = [];
+    let arr = [];
     for (var i = 0; i < num; i++) {
       arr.push("?");
     }
     return arr.toString();
   }
   
-  // Helper function to convert object key/value pairs to SQL syntax
+  // We also need to write a function that converts an object into mysql
   function objToSql(ob) {
-    var arr = [];
-    // loop through the keys and push the key/value as a string int arr
+    // empty array just like the question marks function
+    let arr = [];
+    // this will loop through keys then push the key/value as a string into the array
     for (var key in ob) {
-      var value = ob[key];
+      let value = ob[key];
       // check to skip hidden properties
       if (Object.hasOwnProperty.call(ob, key)) {
-        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+        // if a string with spaces then add quotes 
         if (typeof value === "string" && value.indexOf(" ") >= 0) {
-          value = "'" + value + "'";
+            // adding a single quote to either side of the value
+            value = "'" + value + "'";
         }
-        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-        // e.g. {sleepy: true} => ["sleepy=true"]
+        // push key=value to the end of the array
         arr.push(key + "=" + value);
       }
     }
-    // translate array of strings to a single comma-separated string
+    // then turn the array of strings into one string with commas in between each value
     return arr.toString();
   }
 // this is the ORM where we will define the methods that will interact with. our model in burger.js
@@ -35,14 +37,19 @@ const orm = {
     // the first method that we are going to write is selectAll
     selectAll: (tableInput, cb) =>{
         var queryString = "SELECT * FROM " + tableInput + ";";
+        // with the connection to mysql pass result through the call back (cb) function
         connection.query(queryString, function(err, result) {
-          if (err) {
+            // check for errors
+            if (err) {
             throw err;
           }
+        //   pass the results through the cb AKA callback function
           cb(result);
         });
       },
-      insertOne: function(table, cols, vals, cb) {
+    //   then we write insertOne
+      insertOne: function(table, cols, vals, cb) {    
+        // concatenate the queryString variable to make it readable instead of putting it in one line
         var queryString = "INSERT INTO " + table;
         queryString += " (";
         queryString += cols.toString();
@@ -50,41 +57,41 @@ const orm = {
         queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
-    
+        // console.log to make sure the inserted input strings shows up
         console.log(queryString);
-    
+        // with the connection to mysql pass result through the call back (cb) function
         connection.query(queryString, vals, function(err, result) {
-          if (err) {
+            // check for errors
+            if (err) {
             throw err;
           }
-    
+          //   pass the results through the cb AKA callback function
           cb(result);
         });
       },
+    //   the last method we need for burger.js is going to be the updateOne method
       updateOne: function(table, objColVals, condition, cb) {
+        // concatenate the queryString variable to make it readable instead of putting it in one line
         var queryString = "UPDATE " + table;
     
         queryString += " SET ";
         queryString += objToSql(objColVals);
         queryString += " WHERE ";
         queryString += condition;
-    
+            
+        // console.log to make sure the updated input strings shows up
         console.log(queryString);
+        // with the connection to mysql pass result through the call back (cb) function
         connection.query(queryString, function(err, result) {
-          if (err) {
+            // check for errors
+            if (err) {
             throw err;
           }
-    
+          //   pass the results through the cb AKA callback function
           cb(result);
         });
       }
 };
-
-
-
-
-
-
 
 // exports the ORM for burger.js
 module.exports = orm;
