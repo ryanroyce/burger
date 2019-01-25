@@ -38,7 +38,7 @@ const orm = {
     selectAll: (tableInput, cb) =>{
         var queryString = "SELECT * FROM " + tableInput + ";";
         // with the connection to mysql pass result through the call back (cb) function
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, (err, result) =>{
             // check for errors
             if (err) {
             throw err;
@@ -48,9 +48,9 @@ const orm = {
         });
       },
     //   then we write insertOne
-      insertOne: function(table, cols, vals, cb) {    
+      insertOne: (table, cols, vals, cb) =>{    
         // concatenate the queryString variable to make it readable instead of putting it in one line
-        var queryString = "INSERT INTO " + table;
+        let queryString = "INSERT INTO " + table;
         queryString += " (";
         queryString += cols.toString();
         queryString += ") ";
@@ -60,7 +60,7 @@ const orm = {
         // console.log to make sure the inserted input strings shows up
         console.log(queryString);
         // with the connection to mysql pass result through the call back (cb) function
-        connection.query(queryString, vals, function(err, result) {
+        connection.query(queryString, vals, (err, result) =>{
             // check for errors
             if (err) {
             throw err;
@@ -70,9 +70,9 @@ const orm = {
         });
       },
     //   the last method we need for burger.js is going to be the updateOne method
-      updateOne: function(table, objColVals, condition, cb) {
+      updateOne: (table, objColVals, condition, cb) =>{
         // concatenate the queryString variable to make it readable instead of putting it in one line
-        var queryString = "UPDATE " + table;
+        let queryString = "UPDATE " + table;
     
         queryString += " SET ";
         queryString += objToSql(objColVals);
@@ -82,7 +82,7 @@ const orm = {
         // console.log to make sure the updated input strings shows up
         console.log(queryString);
         // with the connection to mysql pass result through the call back (cb) function
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, (err, result) =>{
             // check for errors
             if (err) {
             throw err;
