@@ -17,5 +17,16 @@ router.get("/", (req, res) => {
     })
 });
 
+router.post('/burgers', (req, res) =>{
+    burger.insertOne([
+      'burger_name'
+    ], [
+      req.body.burger_name
+    ], function(data) {
+      res.render('/');
+    });
+  });
+
+
 // exports the routes for server.js to use.
 module.exports = router;
