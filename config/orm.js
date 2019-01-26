@@ -33,7 +33,7 @@ function printQuestionMarks(num) {
   }
 // this is the ORM where we will define the methods that will interact with. our model in burger.js
 // we did this in the cats activity week 14 activity 17
-const orm = {
+let orm = {
     // the first method that we are going to write is selectAll
     selectAll: (tableInput, cb) =>{
         let queryString = "SELECT * FROM " + tableInput + ";";
