@@ -1,8 +1,8 @@
 // setting up the mysql connection
-var mysql = require("mysql");
+const mysql = require("mysql");
 
 // connect to mysql with the template that was used in the Cats activity week 14 activity 17
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "",
@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
 });
 
 // Make connection.
-connection.connect(function(err) {
+connection.connect((err) =>{
   if (err) {
     console.error("error connecting: " + err.stack);
     return;

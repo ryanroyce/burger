@@ -36,7 +36,7 @@ function printQuestionMarks(num) {
 const orm = {
     // the first method that we are going to write is selectAll
     selectAll: (tableInput, cb) =>{
-        var queryString = "SELECT * FROM " + tableInput + ";";
+        let queryString = "SELECT * FROM " + tableInput + ";";
         // with the connection to mysql pass result through the call back (cb) function
         connection.query(queryString, (err, result) =>{
             // check for errors
@@ -47,7 +47,7 @@ const orm = {
           cb(result);
         });
       },
-    //   then we write insertOne
+    //then we write insertOne
       insertOne: (table, cols, vals, cb) =>{    
         // concatenate the queryString variable to make it readable instead of putting it in one line
         let queryString = "INSERT INTO " + table;
