@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
         // console.log so when we run 'node server.js' and open the local host the table from mysql will appear
         console.log(hbsObject);
         // render index
-        res.render("index");
+        res.render("index", hbsObject);
     })
 });
 
