@@ -16,17 +16,20 @@ router.get("/", (req, res) => {
         res.render("index", hbsObject);
     })
 });
-
-router.post('/burgers', (req, res) =>{
+// post method to post a new burger in the burgers to devour div 
+router.post('/burgers', (req, res) => {
+    // insert a new burger into burger_name column
     burger.insertOne([
-      'burger_name'
+        'burger_name'
     ], [
-      req.body.burger_name
-    ], function(data) {
-      res.render('/');
-    });
-  });
-
+            req.body.burger_name
+        ], (data) => {
+            // redirect the page 
+            // had some trouble with this as I was trying to 'render' the post request
+            // found on stack overflow that the proper method is redirect 
+            res.redirect('/');
+        });
+});
 
 // exports the routes for server.js to use.
 module.exports = router;

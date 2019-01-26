@@ -10,7 +10,7 @@
 
 <body>
     <h1>Create a Burger, then munch on it!!</h1>
-    
+    {{!-- handlebars notation to include all undevoured burgers --}}
     <p>Burgers to devour:</p>
     {{#each burgers}}
     {{#unless this.devoured}}
@@ -20,18 +20,14 @@
     {{/unless}}
     {{/each}}
 
-<h2>Create A Burger</h2>
-<form class="create-form">
+    {{!-- the form to create a new burger and the path name for it '/burgers' --}}
+    <h2>Create A Burger</h2>
+    <form method="POST" action="/burgers">
+        <input type="text" id="burgerBox" name="burger_name" placeholder="Burger Name: ">
+        <button class= "btn" type="submit">BURGER TIME</button>
+    </form>
 
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-  <button type="submit">BURGER TIME</button>
-</form>
-
-
-
+    {{!-- handlebars for the devoured burgers --}}
     <p>BURGERS DEVOURED: </p>
     {{#each burgers}}
     {{#if this.devoured}}

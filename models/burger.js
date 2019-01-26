@@ -4,6 +4,7 @@ const orm = require("../config/orm.js");
 // based on the orm model we insert the mysql statements from the burgers table
 // once again, the cats activity was very helpful with this in week 14 activity 17
 let burger = {
+
   selectAll: (cb) =>{
     orm.selectAll("burgers", (res) =>{
       cb(res);
