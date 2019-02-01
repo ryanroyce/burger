@@ -4,8 +4,8 @@ const router = express.Router();
 const burger = require("../models/burger");
 
 // render the home page that connects index.handlebars
-router.get("/", (req, res) => {
-    burger.selectAll((data) => {
+router.get("/", (req, res) =>{
+    burger.selectAll((data) =>{
         // creating an object that holds burgers data in it
         let hbsObject = {
             burgers: data
@@ -18,13 +18,13 @@ router.get("/", (req, res) => {
 });
 
 // post method to post a new burger in the burgers to devour div 
-router.post('/burgers', (req, res) => {
+router.post('/burgers', (req, res) =>{
     // insert a new burger into burger_name column
     burger.insertOne([
         'burger_name'
     ], [
             req.body.burger_name
-        ], (data) => {
+        ], (data) =>{
             // redirect the page 
             // had some trouble with this as I was trying to 'render' the post request
             // found on stack overflow that the proper method is redirect 
@@ -33,10 +33,10 @@ router.post('/burgers', (req, res) => {
 });
 
 // put method to put a new burger in the devoured burgers div 
-router.put('/api/burgers/:id', (req, res) => {
+router.put('/api/burgers/:id', (req, res) =>{
     // using because its a variable that is more meaningful and if we were building this app out more could be reused
     let id = req.params.id;
-    burger.update(id, () => {
+    burger.update(id, () =>{
         // then redirect AKA refresh the page
         res.redirect("/");
     });

@@ -1,4 +1,4 @@
-// require express
+// require express and handlebars
 const express = require("express");
 const exphbs = require("express-handlebars");
 // connect to the port or port 8080
