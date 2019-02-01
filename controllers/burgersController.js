@@ -14,8 +14,9 @@ router.get("/", (req, res) => {
         console.log(hbsObject);
         // render index
         res.render("index", hbsObject);
-    })
+    });
 });
+
 // post method to post a new burger in the burgers to devour div 
 router.post('/burgers', (req, res) => {
     // insert a new burger into burger_name column
@@ -29,6 +30,16 @@ router.post('/burgers', (req, res) => {
             // found on stack overflow that the proper method is redirect 
             res.redirect('/');
         });
+});
+
+// put method to put a new burger in the devoured burgers div 
+router.put('/api/burgers/:id', (req, res) => {
+    // using because its a variable that is more meaningful and if we were building this app out more could be reused
+    let id = req.params.id;
+    burger.update(id, () => {
+        // then redirect AKA refresh the page
+        res.redirect("/");
+    });
 });
 
 // exports the routes for server.js to use.
