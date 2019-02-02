@@ -8,7 +8,7 @@ function printQuestionMarks(num) {
       arr.push("?");
     }
     return arr.toString();
-  }
+  };
   
   // We also need to write a function that converts an object into mysql
   function objToSql(ob) {
@@ -26,11 +26,11 @@ function printQuestionMarks(num) {
         }
         // push key=value to the end of the array
         arr.push(key + "=" + value);
-      }
-    }
+      };
+    };
     // then turn the array of strings into one string with commas in between each value
     return arr.toString();
-  }
+  };
 // this is the ORM where we will define the methods that will interact with. our model in burger.js
 // we did this in the cats activity week 14 activity 17
 let orm = {
