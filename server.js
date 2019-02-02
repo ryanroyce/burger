@@ -12,9 +12,6 @@ const methodOverride = require("method-override");
 // middleware for methodOverride
 app.use(methodOverride('_method'));
 
-// realized i was using the wrong line of code for methodOverride middleware
-// app.use(methodOverride("X-HTTP-Method-Override"));
-
 // Provides static content for the app from the "public" folder
 app.use(express.static("public"));
 
@@ -25,8 +22,6 @@ app.use(express.json());
 // middleware for handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
-
 
 // Imports routes and gives them access to the server
 const router = require("./controllers/burgersController.js");

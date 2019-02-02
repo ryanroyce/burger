@@ -46,15 +46,5 @@ router.put("/burgers/:id", (req, res) => {
     });
 });
 
-// router.put("/burgers/:id", (req, res) => {
-//     // using because its a variable that is more meaningful and if we were building this app out more could be reused
-//     let id = req.params.id;
-//     burger.updateOne(id, function () {
-//         // then redirect AKA refresh the page
-//         res.redirect("/");
-//     });
-// });
-
-
 // exports the routes for server.js to use.
 module.exports = router;
