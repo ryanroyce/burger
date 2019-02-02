@@ -33,7 +33,7 @@ router.post('/burgers', (req, res) =>{
 });
 
 // put method to put a new burger in the devoured burgers div 
-router.put('/api/burgers/:id', (req, res) =>{
+router.put('/burgers/:id', (req, res) =>{
     // using because its a variable that is more meaningful and if we were building this app out more could be reused
     let id = req.params.id;
     burger.update(id, () =>{

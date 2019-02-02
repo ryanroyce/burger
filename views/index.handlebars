@@ -1,47 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
+<div class="text-center">
+    <h1 class="heading">Create a Burger, then DEVOUR it!!</h1>
+    <img src="/assets/images/burger.jpeg" class="rounded mx-auto d-block" alt="Burger Eater">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Burger Eater</title>
-</head>
-
-<body>
-    <h1>Create a Burger, then munch on it!!</h1>
-    
     {{!-- the form to create a new burger and the path name for it '/burgers' --}}
-    <h2>Create A Burger</h2>
+    <br>
+    <h2 class="heading" >Create A Burger</h2>
     <form method="POST" action="/burgers">
         <input type="text" id="burgerBox" name="burger_name" placeholder="Burger Name: ">
-        <button class="btn" type="submit">BURGER TIME</button>
+        <button class="btn btn-danger" type="submit">BURGER TIME</button>
     </form>
-    
+</div>
+<br>
     {{!-- handlebars notation to include all undevoured burgers --}}
-    <p>Burgers to devour:</p>
-    {{#each burgers}}
-    {{#unless this.devoured}}
-    <ul>
-        {{this.burger_name}}
-        <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-            <button class="btn" type="submit">DEVOUR</button>
-        </form>
-    </ul>
-    {{/unless}}
-    {{/each}}
+    <div class="row">
+        <div class="col">
+            <h2 class="heading">Burgers to devour:</h2>
+            {{#each burgers}}
+            {{#unless this.devoured}}
+            <ul class="heading" id="burgertext">
+                {{this.burger_name}}
+                <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                    <button class="btn btn-danger" type="submit">DEVOUR</button>
+                </form>
+            </ul>
+            {{/unless}}
+            {{/each}}
+        </div>
 
-    {{!-- handlebars for the devoured burgers --}}
-    <p>BURGERS DEVOURED: </p>
-    {{#each burgers}}
-    {{#if this.devoured}}
-    <ul>
-        {{this.burger_name}}
-    </ul>
-    {{/if}}
-    {{/each}}
+        <div class="col">
+            {{!-- handlebars for the devoured burgers --}}
+            <h2 class="heading">BURGERS DEVOURED: </h2>
+            {{#each burgers}}
+            {{#if this.devoured}}
+            <ul class="heading" id="burgertext">
+                {{this.burger_name}}
+            </ul>
+            {{/if}}
+            {{/each}}
+        </div>
 
-
-</body>
-
-</html>
+    </div>

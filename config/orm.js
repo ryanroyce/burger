@@ -73,7 +73,6 @@ let orm = {
       updateOne: (table, objColVals, condition, cb) =>{
         // concatenate the queryString variable to make it readable instead of putting it in one line
         let queryString = "UPDATE " + table;
-    
         queryString += " SET ";
         queryString += objToSql(objColVals);
         queryString += " WHERE ";
