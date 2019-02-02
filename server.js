@@ -10,7 +10,10 @@ const PORT = process.env.PORT || 8080;
 // In this case, I use this in my handlebars
 const methodOverride = require("method-override");
 // middleware for methodOverride
-app.use(methodOverride("X-HTTP-Method-Override"));
+app.use(methodOverride('_method'));
+
+// realized i was using the wrong line of code for methodOverride middleware
+// app.use(methodOverride("X-HTTP-Method-Override"));
 
 // Provides static content for the app from the "public" folder
 app.use(express.static("public"));
