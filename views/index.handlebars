@@ -1,17 +1,17 @@
 <div class="container">
-<div class="text-center">
-    <h1 class="heading">Create a Burger, then DEVOUR it!!</h1>
-    <img src="/assets/images/burger.jpeg" class="rounded mx-auto d-block" alt="Burger Eater">
+    <div class="text-center">
+        <h1 class="heading">Create a Burger, then DEVOUR it!!</h1>
+        <img src="/assets/images/burger.jpeg" class="rounded mx-auto d-block" alt="Burger Eater">
 
-    {{!-- the form to create a new burger and the path name for it '/burgers' --}}
+        {{!-- the form to create a new burger and the path name for it '/burgers' --}}
+        <br>
+        <h2 class="heading">Create A Burger</h2>
+        <form method="POST" action="/burgers">
+            <input type="text" id="burgerBox" name="burger_name" placeholder="Burger Name: ">
+            <button class="btn btn-danger" type="submit">BURGER TIME</button>
+        </form>
+    </div>
     <br>
-    <h2 class="heading" >Create A Burger</h2>
-    <form method="POST" action="/burgers">
-        <input type="text" id="burgerBox" name="burger_name" placeholder="Burger Name: ">
-        <button class="btn btn-danger" type="submit">BURGER TIME</button>
-    </form>
-</div>
-<br>
     {{!-- handlebars notation to include all undevoured burgers --}}
     <div class="row">
         <div class="col">
